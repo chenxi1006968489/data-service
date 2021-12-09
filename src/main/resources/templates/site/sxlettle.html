@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<link rel="icon" th:href="@{/img/icon.png}"/>-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <link rel="stylesheet" th:href="@{/css/letter.css}" />
+    <title>数据服务-应急通知</title>
+</head>
+<style>
+    .search_position{
+        list-style-type:none;
+        position: absolute;
+        top: 7px;
+        right: 85px;
+    }
+    .button_position{
+        list-style-type:none;
+        position: absolute;
+        right: 30px;
+        top: 3px;
+
+    }
+    .button_size{
+        transform: scale(0.85,0.85);
+    }
+</style>
+<body>
+<div class="main">
+    <div class="container">
+        <div class="position-relative">
+            <!-- 选项 -->
+            <ul class="nav nav-tabs mb-3">
+                <li class="nav-item">
+                    <a class="nav-link position-relative active" th:href="@{/letter/list/}">
+                        应急通知<span class="badge badge-danger" th:text="${letterUnreadCount}" th:if="${letterUnreadCount!=0}">3</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link position-relative" th:href="@{/notice/list}">
+                        系统通知<span class="badge badge-danger" th:text="${noticeUnreadCount}" th:if="${noticeUnreadCount!=0}">27</span>
+                    </a>
+                </li>
+            </ul>
+            <li class="search_position">
+                <div>
+                    <input class="search_content">
+                </div>
+            </li>
+            <li class="button_position">
+                <button class="btn btn-outline-primary my-2 my-sm-0 button_size" type="submit">搜索</button>
+            </li>
+
+            <!-- 私信列表 -->
+            <ul class="list-unstyled">
+                <li class="media pb-3 pt-3 mb-3 border-bottom position-relative" th:each="map:${conversations}">
+                    <span class="badge badge-danger" th:text="${map.unreadCount}" th:if="${map.unreadCount!=0}">3</span>
+                    <a href="https://news.ceic.ac.cn/index.html?time=1637849693">
+                        <img th:src="@{/img/system.jpg}" class="mr-4 rounded-circle user-header" alt="用户头像" >
+                    </a>
+                    <div class="media-body">
+                        <h6 class="mt-0 mb-3">
+                            <span class="text-success" th:utext="${map.target}">落基山脉下的闲人</span>
+                            <span class="float-right text-muted font-size-12" th:text="${#dates.format(map.conversation.createTime,'yyyy-MM-dd HH-mm-ss')}">2019-04-28 14:13:25</span>
+                        </h6>
+                        <div>
+                            <a th:utext="${map.content}" th:href="@{|/letter/detail/${map.conversation.conversationId}|}"> <!--th:href="@{|/letter/detail/${map.conversation.conversationId}|}" -->米粉车, 你来吧!</a>
+                            <ul class="d-inline font-size-12 float-right">
+                                <li class="d-inline ml-2"><a href="#" class="text-primary">共<i th:text="${map.letterCount}">5</i>条会话</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" th:href="@{/img/icon.png}"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/global.css}" />
+	<link rel="stylesheet" th:href="@{/css/letter.css}" />
+	<title>消息详情</title>
+</head>
+<style>
+	.from_button{
+		position: relative;
+		top: -4px;
+		left: 600px;
+	}
+</style>
+<body>
+	<div class="nk-container">
+		<!-- 头部 -->
+
+
+		<!-- 内容 -->
+		<div class="main">
+			<div class="container">
+				<div class="row">
+					<div class="col-8">
+						<h6><b class="square"></b> 来自 <i class="text-success">地震台网数据中心</i> 更新的消息</h6>
+					</div>
+					<div class="col-4 text-right">
+						<button type="button" class="btn btn-secondary btn-sm" id="back" onclick="back()">返回</button>
+						<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#sendModal">一键接收</button>
+					</div>
+				</div>
+				<!-- 弹出框 -->
+				<!--<div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">发私信</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+										<label for="recipient-name" class="col-form-label">发给：</label>
+										<input type="text" class="form-control" required="required" id="recipient-name" readonly="readonly" th:value="${target.username}">
+									</div>
+									<div class="form-group">
+										<label for="message-text" class="col-form-label">内容：</label>
+										<textarea class="form-control" required="required" id="message-text" rows="10"></textarea>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+								<button type="button" class="btn btn-primary" id="sendBtn">发送</button>
+							</div>
+						</div>
+					</div>
+				</div>-->
+				<!-- 提示框 -->
+				<div class="modal fade" id="hintModal" tabindex="-1" role="dialog" aria-labelledby="hintModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="hintModalLabel">提示</h5>
+							</div>
+							<div class="modal-body" id="hintBody">
+								发送完毕!
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 私信列表 -->
+				<ul class="list-unstyled mt-4" >
+					<li class="media pb-3 pt-3 mb-2">
+						<a>
+							<img th:src="@{/img/system.jpg}" class="mr-4 rounded-circle user-header" alt="用户头像" >
+						</a>
+						<div class="toast show d-lg-block" role="alert" aria-live="assertive" aria-atomic="true">
+							<div class="toast-header">
+								<strong class="mr-auto" >地震数据更新</strong>
+								<small >2021-11-12</small>
+								<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="toast-body">
+								11月12日09时50分在云南昭通市威信县附近（北纬28.07度，东经105.10度）发生4.2级左右地震
+							</div>
+							<button type="button" class="btn btn-primary btn-sm from_button" >生成数据表单</button>
+						</div>
+					</li>
+					<li class="media pb-3 pt-3 mb-2">
+						<a>
+							<img th:src="@{/img/system.jpg}" class="mr-4 rounded-circle user-header" alt="用户头像" >
+						</a>
+						<div class="toast show d-lg-block" role="alert" aria-live="assertive" aria-atomic="true">
+							<div class="toast-header">
+								<strong class="mr-auto" >地震数据更新</strong>
+								<small >2021-11-03</small>
+								<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="toast-body">
+								11月03日13时51分在河北沧州市沧县（北纬38.17度，东经116.83度）发生2.9级地震，震源深度10千米。
+							</div>
+							<button type="button" class="btn btn-primary btn-sm from_button" >生成数据表单</button>
+						</div>
+					</li>
+					<li class="media pb-3 pt-3 mb-2">
+						<a>
+							<img th:src="@{/img/system.jpg}" class="mr-4 rounded-circle user-header" alt="用户头像" >
+						</a>
+						<div class="toast show d-lg-block" role="alert" aria-live="assertive" aria-atomic="true">
+							<div class="toast-header">
+								<strong class="mr-auto" >地震数据更新</strong>
+								<small >2021-10-30</small>
+								<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="toast-body">
+								10月30日19时11分在班达海（南纬7.55度，东经125.55度）发生5.0级地震，震源深度10千米。
+							</div>
+							<button type="button" class="btn btn-primary btn-sm from_button" >生成数据表单</button>
+						</div>
+					</li>
+				</ul>
+				<!-- 分页 -->
+			<!--	<nav class="mt-5" th:replace="/site/pagination :: nav">
+
+				</nav>-->
+			</div>
+		</div>
+
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+	<script th:src="@{/js/global.js}"></script>
+	<script th:src="@{/js/letter.js}"></script>
+</body>
+</html>

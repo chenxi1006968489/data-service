@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>Title</title>
+</head>
+<body>
+    <header >
+        <div class="layui-header ">
+            <div class="layui-logo layui-hide-xs layui-bg-black"><a th:href="@{/index}">首页</a></div>
+            <!-- 头部区域（可配合layui 已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <!-- 移动端显示 -->
+                <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
+                    <i class="layui-icon layui-icon-spread-left"></i>
+                </li>
+
+                <li class="layui-nav-item layui-hide-xs"><a th:href="@{/event/201_102}">灾害事件专题</a></li>
+
+                <li class="layui-nav-item layui-hide-xs"><a href="historyQuery.html">数据查询</a></li>
+
+                <li class="layui-nav-item layui-hide-xs"><a href="notification.html">接口管理<!--<span class="layui-badge">9</span>--></a></li>
+
+            </ul>
+
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item layui-hide layui-show-md-inline-block">
+                    <a href="javascript:;">
+                        <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20200121%2F7c9cab3e725c44a5a4a14b6ee72724a4.png&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1636381435&t=5f8ab1dd837a81f97b41cd0a6f3ecbf8" class="layui-nav-img">
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/letter/list}">Notification</a></dd>
+                        <dd><a href="">Settings</a></dd>
+                        <dd><a href="">Sign out</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-more-vertical"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+</body>
+</html>
